@@ -36,7 +36,7 @@ public class ResponseDataController {
     // 응답 데이터 - LIST
     @GetMapping("/resp/data3")
     public ResponseEntity<List<Integer>> getList() {
-        // return ResponseEntity.ok(List.of("a", "b", "c"));
+//        return ResponseEntity.ok(List.of("a", "b", "c"));
         return ResponseEntity.ok(List.of(1, 2, 3, 4));
     }
 
@@ -57,10 +57,9 @@ public class ResponseDataController {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachmenet; filename=\"" + filename + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
                 .body(resource);
     }
-
 
     @GetMapping("/resp/data6")
     public ResponseEntity<Resource> downloadUTF8(@RequestParam String filename) {
@@ -77,3 +76,12 @@ public class ResponseDataController {
                 .body(resource);
     }
 }
+
+
+
+
+
+
+
+
+

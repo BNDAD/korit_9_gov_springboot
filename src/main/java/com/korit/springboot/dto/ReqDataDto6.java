@@ -1,9 +1,6 @@
 package com.korit.springboot.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 
 @Data
 public class ReqDataDto6 {

@@ -25,8 +25,8 @@ public class UserController {
     @PostMapping("/api/users")
     public ResponseEntity<Map<String, Integer>> create(@Valid @RequestBody CreateUserReqDto dto) {
         userService.duplicatedUsername(dto.getUsername());
-        int createUserId = userService.createUser(dto);
-        return ResponseEntity.ok(Map.of("createUserId", createUserId));
+        int createdUserId = userService.createUser(dto);
+        return ResponseEntity.ok(Map.of("createdUserId", createdUserId));
     }
 
 }

@@ -1,8 +1,9 @@
 package com.korit.springboot.controller;
 
-
+import com.korit.springboot.dto.ReqDataDto6;
 import com.korit.springboot.dto.ReqFormDataDto4;
 import com.korit.springboot.dto.ReqJsonDto2;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,24 +14,19 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-public class RequestDataController2 {
-
-    //JSON 관련된 것들은 전부 리퀘스트바디 사용
+public class  RequestDataController2{
 
     // POST 요청 데이터 받는 방법 1 - Map을 통해 JSON 데이터 받는 방법
     @PostMapping("/req/data1")
-    public ResponseEntity<?> reqPost1(
-            @RequestBody Map<String, Object> data) {
+    public ResponseEntity<?> reqPost1(@RequestBody Map<String, Object> data) {
         System.out.println(data);
         System.out.println(data.get("additionalProp2"));
         return ResponseEntity.ok().build();
     }
 
-
     // POST 요청 데이터 받는 방법 2 - DTO를 통해 JSON 데이터 받는 방법
     @PostMapping("/req/data2")
-    public ResponseEntity<?> reqPost2(
-            @RequestBody ReqJsonDto2 data) {
+    public ResponseEntity<?> reqPost2(@RequestBody ReqJsonDto2 data) {
         System.out.println(data);
         return ResponseEntity.ok().build();
     }
@@ -38,12 +34,10 @@ public class RequestDataController2 {
     // POST 요청 데이터 받는 방법 3 - 파일 데이터 받는 방법
     // 파일 전송을 위해서는 요청 Content-Type이 꼭 multipart/form-data
     @PostMapping(value = "/req/data3", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> reqPost3(
-            @RequestPart("file") MultipartFile file) {
+    public ResponseEntity<?> reqPost3(@RequestPart("file") MultipartFile file) {
         System.out.println(file.getOriginalFilename());
         return ResponseEntity.ok().build();
     }
-
 
     // POST 요청 데이터 받는 방법 4 - 파일 데이터 받는 방법
     // 파일 전송을 위해서는 요청 Content-Type이 꼭 multipart/form-data
@@ -57,29 +51,27 @@ public class RequestDataController2 {
     // POST 요청 데이터 받는 방법 5 - 여러파일 데이터 받는 방법
     // 파일 전송을 위해서는 요청 Content-Type이 꼭 multipart/form-data
     @PostMapping(value = "/req/data5", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> reqPost5(
-            @RequestPart("files") List<MultipartFile> files) {
+    public ResponseEntity<?> reqPost5(@RequestPart("files") List<MultipartFile> files) {
         files.forEach(file -> System.out.println(file.getOriginalFilename()));
         return ResponseEntity.ok().build();
     }
 
 
-    
-    //PUT, PATCH는 @PathVariable 꼭사용
-    //PUT 요청 데이터 받는 방법 1 - JSON 데이터만 보통 사용
+
+
+    // PUT 요청 데이터 받는 방법 1 - JSON 데이터만 보통 사용
     @PutMapping("/req/data1/{id}")
     public ResponseEntity<?> reqPut(@PathVariable int id, @RequestBody ReqJsonDto2 dto) {
         System.out.println(dto);
         return ResponseEntity.ok().build();
     }
 
-    //PATCH 요청 데이터 받는 방법 1 - JSON 데이터만 보통 사용
+    // PATCH 요청 데이터 받는 방법 1 - JSON 데이터만 보통 사용
     @PatchMapping("/req/data1/{id}")
     public ResponseEntity<?> reqPatch(@PathVariable int id, @RequestBody ReqJsonDto2 dto) {
         System.out.println(dto);
         return ResponseEntity.ok().build();
     }
-
 
     @DeleteMapping("/req/data1/{id}")
     public ResponseEntity<?> reqDelete(@PathVariable int id, @RequestBody Map<String, Object> data) {
@@ -87,5 +79,6 @@ public class RequestDataController2 {
         System.out.println(data);
         return ResponseEntity.ok().build();
     }
+
 
 }
