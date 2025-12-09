@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,5 +18,5 @@ public class UserEntity {
     private String name;
     private String email;
 
-
+    private List<UserRoleEntity> userRoleEntities;
 }
