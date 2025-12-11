@@ -7,7 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class SecurityRequirementController {
@@ -25,4 +28,13 @@ public class SecurityRequirementController {
 
         return ResponseEntity.ok("응답");
     }
+    @GetMapping("/api/security/data")
+    public ResponseEntity<String> getData(@RequestParam int index) {
+
+        List<String> data = List.of("a", "b", "c", "d");
+
+        return ResponseEntity.ok(data.get(index));
+    }
+
 }
+
